@@ -1,0 +1,9 @@
+{
+  "_comment": "Writing: hint/prompt per agent_id for query normalization and memory fusion. See DESIGN_ARCHITECTURE.md appendix A.",
+  "physics_agent": {"hint": "writing_hint.txt", "prompt": "writing_user_fusion.txt"},
+  "chemistry_agent": {"hint": "writing_user_fusion.txt", "prompt": "writing_user_fusion.txt"},
+  "biology_agent": {"hint": "writing_user_fusion.txt", "prompt": "writing_user_fusion.txt"},
+  "math_agent": {"hint": "writing_user_fusion.txt", "prompt": "writing_user_fusion.txt"},
+  "cs_agent": {"hint": "writing_user_fusion.txt", "prompt": "writing_user_fusion.txt"},
+  "_default": {"hint": "writing_user_fusion.txt", "prompt": "writing_user_fusion.txt"}
+}

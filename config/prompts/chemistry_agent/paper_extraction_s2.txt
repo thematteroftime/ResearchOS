@@ -1,0 +1,15 @@
+对于化学/材料类论文，请使用以下扩展结构（替换通用结构）：
+
+{
+  "metadata": {"title": "", "authors": "", "journal": "", "year": "", "abstract": "", "innovation": ""},
+  "methodology": "",
+  "keywords": [],
+  "reaction": {"scheme": "", "stoichiometry": ""},
+  "reagents": [{"name": "", "formula": "", "role": "", "amount": "", "unit": "", "purity_or_grade": ""}],
+  "solvents": [{"name": "", "ratio": "", "note": ""}],
+  "conditions": {"temperature": "", "pressure": "", "time": "", "atmosphere": "", "pH": "", "other": ""},
+  "analytical_methods": [{"name": "", "purpose": ""}],
+  "products_and_yield": {"products": "", "yield": "", "purity": ""},
+  "safety_and_handling": "",
+  "figures": [{"id": "", "caption": "", "page": 0}]
+}

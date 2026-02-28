@@ -1,0 +1,11 @@
+{
+  "_comment": "兜底配置，缺失时回退 qwen",
+  "paper_ingest": {
+    "extraction_s1": {"provider": "qwen", "model": "qwen-long"},
+    "extraction_s2": {"provider": "qwen", "model": "qwen-plus"},
+    "figure_caption": {"provider": "qwen", "model": "qwen-vl-plus"},
+    "formula_verification": {"provider": "qwen", "model": "qwen-plus"}
+  },
+  "parameter_recommendation": {"main": {"provider": "qwen", "model": "qwen-long"}},
+  "writing": {"query_normalize": {"provider": "qwen", "model": "qwen-plus"}}
+}

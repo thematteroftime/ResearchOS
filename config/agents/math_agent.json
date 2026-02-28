@@ -1,0 +1,10 @@
+{
+  "_comment": "math_agent: 数学领域",
+  "paper_ingest": {
+    "extraction_s1": {"provider": "qwen", "model": "qwen-long"},
+    "extraction_s2": {"provider": "qwen", "model": "qwen-plus"},
+    "figure_caption": {"provider": "qwen", "model": "qwen-vl-plus"}
+  },
+  "parameter_recommendation": {"main": {"provider": "qwen", "model": "qwen-long"}},
+  "writing": {"query_normalize": {"provider": "qwen", "model": "qwen-plus"}}
+}

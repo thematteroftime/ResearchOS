@@ -1,0 +1,5 @@
+{
+  "_comment": "对应 prompts/_default/parameter_recommendation.txt 输出结构",
+  "show_force_field_first": false,
+  "param_display": "cards"
+}

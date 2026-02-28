@@ -1,0 +1,12 @@
+针对生命科学/生物医学论文，在 _default 通用标签之外，补充以下领域特有标签（如存在）：
+
+[experimental_subject]: 实验对象（物种/品系/细胞系/组织类型/志愿者特征等）
+[biomolecules]: 关键生物分子列表（每项注明类型，如蛋白质/核酸/氨基酸，名称及作用）
+[proteins_and_targets]: 重点蛋白/受体/通路（名称、缩写及其在研究中的角色）
+[assay_methods]: 主要检测/实验方法（如 Western blot、ELISA、流式细胞术、免疫荧光、RNA-seq 等）
+[reagents_and_kits]: 关键试剂和试剂盒（名称、供应商、货号，若文中有）
+[experimental_design]: 实验分组、对照设置、样本量与随机化/盲法说明
+[procedure_summary]: 关键实验步骤概述
+[results_summary]: 主要实验发现与趋势（可引用图表编号）
+[statistics]: 统计分析方法与显著性指标
+[limitations]: 作者提到的局限性或注意事项（若有）

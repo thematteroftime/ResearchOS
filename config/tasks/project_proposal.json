@@ -1,0 +1,9 @@
+{
+  "_comment": "Project proposal: prompt file per agent_id; reserved for extension.",
+  "physics_agent": {"prompt": "project_proposal.txt"},
+  "chemistry_agent": {"prompt": "project_proposal.txt"},
+  "biology_agent": {"prompt": "project_proposal.txt"},
+  "math_agent": {"prompt": "project_proposal.txt"},
+  "cs_agent": {"prompt": "project_proposal.txt"},
+  "_default": {"prompt": "project_proposal.txt"}
+}

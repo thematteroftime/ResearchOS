@@ -1,0 +1,9 @@
+{
+  "_comment": "Parameter recommendation: prompt file per agent_id.",
+  "physics_agent": {"prompt": "parameter_recommendation.txt"},
+  "chemistry_agent": {"prompt": "parameter_recommendation.txt"},
+  "biology_agent": {"prompt": "parameter_recommendation.txt"},
+  "math_agent": {"prompt": "parameter_recommendation.txt"},
+  "cs_agent": {"prompt": "parameter_recommendation.txt"},
+  "_default": {"prompt": "parameter_recommendation.txt"}
+}

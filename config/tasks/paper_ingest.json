@@ -1,0 +1,9 @@
+{
+  "_comment": "Paper ingest task: prompt keys per agent_id; _default fallback.",
+  "physics_agent": {"extraction_s1": "paper_extraction_s1.txt", "extraction_s2": "paper_extraction_s2.txt", "figure_caption": "paper_figure_caption.txt"},
+  "chemistry_agent": {"extraction_s1": "paper_extraction_s1.txt", "extraction_s2": "paper_extraction_s2.txt", "figure_caption": "paper_figure_caption.txt"},
+  "biology_agent": {"extraction_s1": "paper_extraction_s1.txt", "extraction_s2": "paper_extraction_s2.txt", "figure_caption": "paper_figure_caption.txt"},
+  "math_agent": {"extraction_s1": "paper_extraction_s1.txt", "extraction_s2": "paper_extraction_s2.txt", "figure_caption": "paper_figure_caption.txt"},
+  "cs_agent": {"extraction_s1": "paper_extraction_s1.txt", "extraction_s2": "paper_extraction_s2.txt", "figure_caption": "paper_figure_caption.txt"},
+  "_default": {"extraction_s1": "paper_extraction_s1.txt", "extraction_s2": "paper_extraction_s2.txt", "figure_caption": "paper_figure_caption.txt"}
+}

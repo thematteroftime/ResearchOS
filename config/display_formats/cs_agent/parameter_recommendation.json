@@ -1,0 +1,5 @@
+{
+  "_comment": "对应 prompts/cs_agent/parameter_recommendation.txt。CS 参数推荐（超参、配置等）",
+  "show_force_field_first": false,
+  "param_display": "cards"
+}

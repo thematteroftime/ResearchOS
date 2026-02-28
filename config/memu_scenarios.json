@@ -1,0 +1,76 @@
+{
+  "agent_ids": ["physics_agent", "chemistry_agent", "biology_agent", "math_agent", "cs_agent", "_default"],
+  "_comment": "Per agent_id: memory/retrieve + per-task memory_types. physics_agent = physics domain; others reserved.",
+  "physics_agent": {
+    "memory_types": ["knowledge"],
+    "memory_categories": [
+      {"name": "paper_metadata", "description": "Paper title, authors, journal, year, innovation, experiment setup, parameters, force fields", "target_length": null, "summary_prompt": null},
+      {"name": "project_proposal", "description": "Project idea, data sources, output summary, user input", "target_length": 300, "summary_prompt": null},
+      {"name": "writing_event", "description": "Writing task query, data files, output paths", "target_length": 200, "summary_prompt": null},
+      {"name": "other", "description": "Other or cross-domain content not fitting above categories", "target_length": null, "summary_prompt": null}
+    ],
+    "tasks": {
+      "paper_ingest": {"memory_types": ["knowledge"], "memory_categories_ref": "default"},
+      "project_proposal": {"memory_types": ["event", "knowledge"], "memory_categories_ref": "default"},
+      "parameter_recommendation": {"memory_types": ["knowledge", "behavior"], "memory_categories_ref": "default"},
+      "writing": {"memory_types": ["event", "knowledge"], "memory_categories_ref": "default"}
+    },
+    "retrieve": {"method": "rag", "item": {"top_k": 5, "enabled": true}, "category": {"top_k": 3, "enabled": true}, "resource": {"top_k": 5, "enabled": true}, "route_intention": false, "sufficiency_check": false},
+    "scenes": ["paper", "proposal", "parameter_recommendation", "writing_event", "data", "image", "other"]
+  },
+  "chemistry_agent": {
+    "memory_types": ["knowledge"],
+    "memory_categories": [{"name": "other", "description": "General content", "target_length": null, "summary_prompt": null}],
+    "tasks": {
+      "paper_ingest": {"memory_types": ["knowledge"], "memory_categories_ref": "default"},
+      "project_proposal": {"memory_types": ["event", "knowledge"], "memory_categories_ref": "default"},
+      "parameter_recommendation": {"memory_types": ["knowledge", "behavior"], "memory_categories_ref": "default"},
+      "writing": {"memory_types": ["event", "knowledge"], "memory_categories_ref": "default"}
+    },
+    "retrieve": {"method": "rag", "item": {"top_k": 5, "enabled": true}, "category": {"top_k": 3, "enabled": true}, "resource": {"top_k": 5, "enabled": true}}
+  },
+  "biology_agent": {
+    "memory_types": ["knowledge"],
+    "memory_categories": [{"name": "other", "description": "General content", "target_length": null, "summary_prompt": null}],
+    "tasks": {
+      "paper_ingest": {"memory_types": ["knowledge"], "memory_categories_ref": "default"},
+      "project_proposal": {"memory_types": ["event", "knowledge"], "memory_categories_ref": "default"},
+      "parameter_recommendation": {"memory_types": ["knowledge", "behavior"], "memory_categories_ref": "default"},
+      "writing": {"memory_types": ["event", "knowledge"], "memory_categories_ref": "default"}
+    },
+    "retrieve": {"method": "rag", "item": {"top_k": 5, "enabled": true}, "category": {"top_k": 3, "enabled": true}, "resource": {"top_k": 5, "enabled": true}}
+  },
+  "math_agent": {
+    "memory_types": ["knowledge"],
+    "memory_categories": [{"name": "other", "description": "General content", "target_length": null, "summary_prompt": null}],
+    "tasks": {
+      "paper_ingest": {"memory_types": ["knowledge"], "memory_categories_ref": "default"},
+      "project_proposal": {"memory_types": ["event", "knowledge"], "memory_categories_ref": "default"},
+      "parameter_recommendation": {"memory_types": ["knowledge", "behavior"], "memory_categories_ref": "default"},
+      "writing": {"memory_types": ["event", "knowledge"], "memory_categories_ref": "default"}
+    },
+    "retrieve": {"method": "rag", "item": {"top_k": 5, "enabled": true}, "category": {"top_k": 3, "enabled": true}, "resource": {"top_k": 5, "enabled": true}}
+  },
+  "cs_agent": {
+    "memory_types": ["knowledge"],
+    "memory_categories": [{"name": "other", "description": "General content", "target_length": null, "summary_prompt": null}],
+    "tasks": {
+      "paper_ingest": {"memory_types": ["knowledge"], "memory_categories_ref": "default"},
+      "project_proposal": {"memory_types": ["event", "knowledge"], "memory_categories_ref": "default"},
+      "parameter_recommendation": {"memory_types": ["knowledge", "behavior"], "memory_categories_ref": "default"},
+      "writing": {"memory_types": ["event", "knowledge"], "memory_categories_ref": "default"}
+    },
+    "retrieve": {"method": "rag", "item": {"top_k": 5, "enabled": true}, "category": {"top_k": 3, "enabled": true}, "resource": {"top_k": 5, "enabled": true}}
+  },
+  "_default": {
+    "memory_types": ["knowledge"],
+    "memory_categories": [{"name": "other", "description": "General content", "target_length": null, "summary_prompt": null}],
+    "tasks": {
+      "paper_ingest": {"memory_types": ["knowledge"], "memory_categories_ref": "default"},
+      "project_proposal": {"memory_types": ["event", "knowledge"], "memory_categories_ref": "default"},
+      "parameter_recommendation": {"memory_types": ["knowledge", "behavior"], "memory_categories_ref": "default"},
+      "writing": {"memory_types": ["event", "knowledge"], "memory_categories_ref": "default"}
+    },
+    "retrieve": {"method": "rag", "item": {"top_k": 5, "enabled": true}, "category": {"top_k": 3, "enabled": true}, "resource": {"top_k": 5, "enabled": true}}
+  }
+}

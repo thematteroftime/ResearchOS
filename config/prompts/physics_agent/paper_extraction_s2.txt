@@ -1,0 +1,23 @@
+对于物理论文，请使用以下扩展结构（替换通用结构）。要求：
+- 单位(unit)和数值(value)分离
+- 物理公式使用 LaTeX 语法；force_fields[i].formula 只填公式本体，不要 $ 包裹
+- force_fields 仅含微粒间相互作用势（Pair Potentials），外加电场/磁场等放入 parameters
+
+目标结构：
+{
+    "metadata": {"title": "", "journal": "", "year": "", "innovation": ""},
+    "physics_context": {"environment": "", "detailed_background": ""},
+    "observed_phenomena": "",
+    "simulation_results_description": "",
+    "keywords": [],
+    "parameters": [
+        {"name": "", "symbol": "", "value": "", "unit": "", "meaning": "", "enriched_physics": "", "source": ""}
+    ],
+    "force_fields": [
+        {"name": "", "formula": "", "physical_significance": "", "computational_hint": ""}
+    ],
+    "experiment_setup": "",
+    "figures": [
+        {"id": "", "caption": "", "page": 0, "linked_parameters": [], "image_path": ""}
+    ]
+}

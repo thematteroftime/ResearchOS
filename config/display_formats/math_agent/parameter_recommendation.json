@@ -1,0 +1,5 @@
+{
+  "_comment": "对应 prompts/math_agent/parameter_recommendation.txt",
+  "show_force_field_first": false,
+  "param_display": "cards"
+}

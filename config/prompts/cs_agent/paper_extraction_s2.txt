@@ -1,0 +1,12 @@
+对于计算机科学论文，请使用以下扩展结构（替换通用结构）：
+
+{
+    "metadata": {"title": "", "authors": "", "journal": "", "year": "", "abstract": "", "innovation": ""},
+    "methodology": "",
+    "keywords": [],
+    "algorithm": {"description": "", "complexity": ""},
+    "system": {"architecture": ""},
+    "implementation": {"language_or_framework": ""},
+    "dataset_or_evaluation": "",
+    "figures": [{"id": "", "caption": "", "page": 0}]
+}

@@ -1,0 +1,7 @@
+{
+  "_comment": "对应 prompts/biology_agent/paper_extraction_s1.txt。生命科学：experimental_subject, biomolecules, assay_methods, results_summary 等",
+  "sections_order": ["metadata", "experimental_subject", "biomolecules", "proteins_and_targets", "assay_methods", "experimental_design", "results_summary", "statistics", "methodology"],
+  "show_innovation_highlight": true,
+  "collapse_optional": ["procedure_summary", "reagents_and_kits", "limitations"],
+  "figure_position": "inline"
+}

@@ -1,0 +1,7 @@
+{
+  "_comment": "对应 prompts/physics_agent/paper_extraction_s1.txt 输出结构。物理特有：physics_context, observed_phenomena, parameters, force_fields",
+  "sections_order": ["physics_context", "observed_phenomena", "parameters", "force_fields"],
+  "show_innovation_highlight": true,
+  "collapse_optional": ["methodology"],
+  "figure_position": "inline"
+}

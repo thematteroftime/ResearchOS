@@ -1,0 +1,7 @@
+针对计算机科学/软件工程论文，在 _default 通用标签之外，补充以下领域特有标签（如存在）：
+
+[algorithm.description]: 算法或方法描述
+[algorithm.complexity]: 时间复杂度/空间复杂度（若有）
+[system.architecture]: 系统架构或模块说明（若有）
+[implementation.language_or_framework]: 实现语言或框架（若有）
+[dataset_or_evaluation]: 数据集或实验评估简述（若有）

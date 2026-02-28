@@ -1,0 +1,7 @@
+{
+  "_comment": "对应 prompts/chemistry_agent/paper_extraction_s1.txt。化学/材料：reaction, reagents, conditions, analytical_methods 等",
+  "sections_order": ["metadata", "reaction_scheme", "reagents", "conditions", "analytical_methods", "products_and_yield", "methodology"],
+  "show_innovation_highlight": true,
+  "collapse_optional": ["solvents", "safety_and_handling"],
+  "figure_position": "inline"
+}

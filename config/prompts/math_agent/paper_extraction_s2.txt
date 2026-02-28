@@ -1,0 +1,17 @@
+对于数学/应用数学论文，请使用以下扩展结构（替换通用结构）：
+
+{
+  "metadata": {"title": "", "authors": "", "journal": "", "year": "", "abstract": "", "innovation": ""},
+  "methodology": "",
+  "keywords": [],
+  "core_definitions": "",
+  "main_theorems": [{"name_or_label": "", "statement": "", "type": ""}],
+  "important_formulas": [{"latex": "", "description": ""}],
+  "geometry": {"focus": "", "objects": "", "intuition_number_shape": ""},
+  "differential_equations": {
+    "equation_form": "", "type": "", "modeling_idea": "", "term_meanings": "",
+    "boundary_and_initial_conditions": "", "solution_methods": ""
+  },
+  "examples_and_applications": "",
+  "figures": [{"id": "", "caption": "", "page": 0}]
+}

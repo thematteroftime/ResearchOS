@@ -1,0 +1,5 @@
+{
+  "_comment": "对应 prompts/physics_agent/parameter_recommendation.txt 输出结构。物理参数推荐：参数区间、力场、物理单位",
+  "show_force_field_first": false,
+  "param_display": "cards"
+}

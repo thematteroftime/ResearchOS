@@ -1,0 +1,7 @@
+{
+  "_comment": "对应 prompts/math_agent/paper_extraction_s1.txt。数学：core_definitions, main_theorems, important_formulas, differential_equations 等",
+  "sections_order": ["metadata", "core_definitions", "main_theorems", "important_formulas", "differential_equations", "geometry_focus", "examples_and_applications", "methodology"],
+  "show_innovation_highlight": true,
+  "collapse_optional": ["methodology"],
+  "figure_position": "inline"
+}

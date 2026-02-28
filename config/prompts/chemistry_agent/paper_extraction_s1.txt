@@ -1,0 +1,10 @@
+针对化学/材料科学论文，在 _default 通用标签之外，补充以下领域特有标签（如存在）：
+
+[reaction.scheme]: 关键化学反应方程式（可包含多个，注明反应编号）
+[reaction.stoichiometry]: 计量关系与配比（若有）
+[reagents]: 主要反应物和试剂列表（名称、化学式、纯度/规格、摩尔量或质量/体积、角色如底物/催化剂/溶剂等）
+[solvents]: 溶剂种类与体积比例（若有）
+[conditions]: 反应条件（温度、压力、时间、气氛、pH、搅拌方式等）
+[analytical_methods]: 表征与分析方法（如 NMR, GC-MS, HPLC, IR, UV-Vis, XRD 等）
+[products_and_yield]: 目标产物及收率/纯度情况
+[safety_and_handling]: 安全注意事项（若有）

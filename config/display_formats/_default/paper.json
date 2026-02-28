@@ -1,0 +1,7 @@
+{
+  "_comment": "对应 prompts/_default/paper_extraction_s1.txt 输出结构。通用论文：metadata, methodology, keywords, figures",
+  "sections_order": ["metadata", "methodology", "keywords", "figures"],
+  "show_innovation_highlight": true,
+  "collapse_optional": ["methodology"],
+  "figure_position": "inline"
+}

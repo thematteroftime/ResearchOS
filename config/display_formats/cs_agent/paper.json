@@ -1,0 +1,7 @@
+{
+  "_comment": "对应 prompts/cs_agent/paper_extraction_s1.txt。计算机科学：algorithm, system_architecture, dataset_or_evaluation 等",
+  "sections_order": ["metadata", "algorithm_description", "algorithm_complexity", "system_architecture", "implementation", "dataset_or_evaluation", "methodology"],
+  "show_innovation_highlight": true,
+  "collapse_optional": ["methodology"],
+  "figure_position": "inline"
+}
