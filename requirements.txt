@@ -1,0 +1,26 @@
+# Merge Project: paper_web + scientific-writer + memU
+# Python 3.10+
+# 安装：pip install -r requirements.txt
+
+# ========== 环境与 HTTP ==========
+python-dotenv>=1.0.0
+httpx>=0.27.0
+requests>=2.31.0
+
+# ========== Scientific Writer（论文生成）==========
+# 写作核心依赖；Claude 调用需 ANTHROPIC_API_KEY
+scientific-writer>=2.11.0
+
+# ========== 论文提取与 RAG（paper_web）==========
+faiss-cpu>=1.13.0
+numpy>=1.24.0
+portalocker>=3.0.0
+pymupdf>=1.24.0
+openai>=1.0.0
+
+# ========== Query 规范化（Qwen/DashScope）==========
+# agent_config、normalize_query 使用
+dashscope>=1.14.0
+
+# ========== 前端（可选）==========
+gradio>=4.0.0
