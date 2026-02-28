@@ -1,0 +1,160 @@
+{
+  "metadata": {
+    "title": "Simulated outperforms quantum reverse annealing in mean-field models",
+    "authors": "",
+    "journal": "(Dated: November 4, 2025)",
+    "year": 2025,
+    "abstract": "",
+    "innovation": "Introduces a classical analogue of adiabatic reverse annealing—simulated reverse annealing (SRA)—and demonstrates that it outperforms its quantum counterpart in mean-field models; provides a new framework for evaluating quantum advantage by requiring comparative failure of classical analogues."
+  },
+  "methodology": "",
+  "keywords": [
+    "quantum annealing",
+    "reverse annealing",
+    "simulated annealing",
+    "phase transitions",
+    "mean-field theory",
+    "optimization",
+    "spin glasses",
+    "free energy landscape"
+  ],
+  "figures": [
+    {
+      "id": "page-1",
+      "caption": "第 1 页整页快照",
+      "page": 1,
+      "linked_parameters": [],
+      "image_path": "figures/a94f4804-9b0_page_1.png"
+    },
+    {
+      "id": "page-2",
+      "caption": "第 2 页整页快照",
+      "page": 2,
+      "linked_parameters": [],
+      "image_path": "figures/a94f4804-9b0_page_2.png"
+    },
+    {
+      "id": "page-3",
+      "caption": "第 3 页整页快照",
+      "page": 3,
+      "linked_parameters": [],
+      "image_path": "figures/a94f4804-9b0_page_3.png"
+    },
+    {
+      "id": "page-4",
+      "caption": "第 4 页整页快照",
+      "page": 4,
+      "linked_parameters": [],
+      "image_path": "figures/a94f4804-9b0_page_4.png"
+    },
+    {
+      "id": "page-5",
+      "caption": "第 5 页整页快照",
+      "page": 5,
+      "linked_parameters": [],
+      "image_path": "figures/a94f4804-9b0_page_5.png"
+    },
+    {
+      "id": "page-6",
+      "caption": "第 6 页整页快照",
+      "page": 6,
+      "linked_parameters": [],
+      "image_path": "figures/a94f4804-9b0_page_6.png"
+    }
+  ],
+  "physics_context": {
+    "environment": "Quantum annealing setup with transverse field control; classical Monte Carlo simulation environment with time-varying temperature; comparison between quantum adiabatic evolution and classical stochastic dynamics.",
+    "detailed_background": "Infinite-range (fully connected) p-spin model without disorder; generalized to include competition between global ground state and a marked local minimum; parameters include p = 3 or 5, α ∈ (0,1), x ∈ (0,1) denoting fraction of down spins in marked state; system size N → ∞ limit assumed; s(t) and λ(t) are time-dependent control parameters varied during protocol."
+  },
+  "observed_phenomena": "Discontinuous phase transitions in free energy landscape; suppression of phase transitions via merging of local minima under fluctuation effects; smooth interpolation between marked state and true ground state; dynamical avoidance of metastability through controlled fluctuation strength.",
+  "simulation_results_description": "In both ARA and SRA, successful protocols follow paths in the (s,λ) plane that avoid discontinuous phase transitions, leading to convergence to the correct ground state. When such paths exist, both methods succeed, but SRA achieves lower error faster due to direct thermal relaxation. Crucially, there exists a narrow regime where SRA succeeds while ARA fails, demonstrating superior robustness of the classical method in mean-field models.",
+  "parameters": [
+    {
+      "name": "System size",
+      "symbol": "N",
+      "value": "Large / ∞",
+      "unit": "dimensionless",
+      "meaning": "Number of Ising spins/qubits",
+      "enriched_physics": "Thermodynamic limit enables mean-field treatment",
+      "source": "原文"
+    },
+    {
+      "name": "p-spin interaction order",
+      "symbol": "p",
+      "value": "3, 5",
+      "unit": "dimensionless",
+      "meaning": "Degree of multi-spin interaction in Hamiltonian",
+      "enriched_physics": "Controls sharpness of phase transition; odd values avoid degeneracy",
+      "source": "原文"
+    },
+    {
+      "name": "Marked state overlap",
+      "symbol": "x",
+      "value": "0.2, 0.25",
+      "unit": "dimensionless",
+      "meaning": "Fraction of spins pointing down in initial excited state",
+      "enriched_physics": "Measures distance between initial guess and true ground state",
+      "source": "原文"
+    },
+    {
+      "name": "Relative energy weight",
+      "symbol": "α",
+      "value": "0.1, 0.5, 0.6, 0.9",
+      "unit": "dimensionless",
+      "meaning": "Weight of marked state term in generalized p-spin Hamiltonian",
+      "enriched_physics": "Controls stability of local minimum relative to global one",
+      "source": "原文"
+    },
+    {
+      "name": "Annealing parameter",
+      "symbol": "s",
+      "value": "0 → 1",
+      "unit": "dimensionless",
+      "meaning": "Interpolation between transverse field and problem Hamiltonian",
+      "enriched_physics": "Drives the system toward target optimization problem",
+      "source": "原文"
+    },
+    {
+      "name": "Fluctuation strength parameter",
+      "symbol": "λ",
+      "value": "0 → 1",
+      "unit": "dimensionless",
+      "meaning": "Strength of transverse field (ARA) or effective temperature (SRA)",
+      "enriched_physics": "Controls magnitude of quantum or thermal fluctuations",
+      "source": "原文"
+    },
+    {
+      "name": "Runtime",
+      "symbol": "T",
+      "value": "Varies (e.g., 10, 20, 40)",
+      "unit": "Arbitrary time units",
+      "meaning": "Total duration of annealing protocol",
+      "enriched_physics": "Determines adiabaticity and accuracy of final state",
+      "source": "原文"
+    },
+    {
+      "name": "Inverse temperature",
+      "symbol": "β",
+      "value": "→ ∞ (zero temp limit)",
+      "unit": "1/energy",
+      "meaning": "Thermal inverse temperature in path integral formalism",
+      "enriched_physics": "Used to derive ground state properties from free energy",
+      "source": "原文"
+    }
+  ],
+  "force_fields": [
+    {
+      "name": "ARA Hamiltonian",
+      "formula": "H(s,\\lambda) = -sN^{1-p}(S_u + S_d)^p - s\\alpha N^{1-p}(S_u - S_d)^p - (1-s)[\\lambda \\sum \\sigma_x^j + (1-\\lambda) \\sum a_j \\sigma_z^j]",
+      "physical_significance": "Time-dependent quantum Hamiltonian combining transverse field and longitudinal bias toward marked state",
+      "computational_hint": "Use dimensionless units; implement via mean-field path integral or quantum master equation; ensure adiabatic variation of s(t), λ(t)"
+    },
+    {
+      "name": "SRA Classical Hamiltonian",
+      "formula": "H(s,\\lambda) = sH_0 - (1-s)(1-\\lambda) \\sum a_j \\sigma_z^j",
+      "physical_significance": "Effective classical energy function with time-dependent coupling to initial state",
+      "computational_hint": "Implement in Metropolis Monte Carlo with temperature schedule T(s,\\lambda)=(1-s)\\lambda; use single-spin flip dynamics; track order parameters m_u, m_d"
+    }
+  ],
+  "experiment_setup": "Not applicable – theoretical study based on mean-field solvable models; no physical device or spatial geometry involved; dynamics governed by all-to-all interactions in infinite-range model; boundary conditions not applicable; time evolution defined by parameter schedules s(t), λ(t)."
+}
