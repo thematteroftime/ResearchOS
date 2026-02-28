@@ -1,0 +1,267 @@
+KNOWLEDGE_PROMPT = """You are a complex plasma physicist specializing in microgravity experiments (PK-3 Plus/PK-4) and molecular dynamics simulations.
+
+TASK: Extract a STRUCTURED KNOWLEDGE ENTRY from the paper for RAG retrieval. Focus on PHYSICAL CONTEXT and ACTIONABLE INFORMATION.
+
+⚠️ CRITICAL: The schema below defines OUTPUT STRUCTURE ONLY. DO NOT copy values from examples. ALL content MUST derive from the paper AFTER "=== PAPER CONTENT ===".
+
+### OUTPUT SCHEMA (STRUCTURE ONLY - NO VALUES TO COPY)
+{
+  "title": "<concise_english_title>",
+  "paper_type": "SIMULATION | THEORY",
+  "physical_context": {
+    "experimental_setup": "<e.g., PK-4 RF discharge / ground-based chamber>",
+    "plasma_regime": "<e.g., weakly_coupled_Γ<1 / strongly_coupled_Γ>100>",
+    "dust_properties": "<e.g., particle_material_size_charge>"
+  },
+  "summary": "<3-5 sentences covering: physical problem, methodology, key finding>",
+  "modeling_relevance": "low | medium | high",
+  "key_innovations": ["<new_method>", "<novel_parameter_regime>", ...],
+  "physics_concepts": ["<concept_1>", "<concept_2>", ...],
+  "key_equations": [
+    {"name": "<equation_name>", "form": "<symbolic_form>"},
+    ...
+  ],
+  "simulation_parameters_mentioned": ["<param_1>", "<param_2>", ...],
+  "applicable_scenarios": ["<scenario_1>", "<scenario_2>", ...],
+  "source": {"pdf": "<filename>", "keyword": "<topic>"}
+}
+
+### EXAMPLES (FOR FORMAT REFERENCE ONLY - DO NOT COPY VALUES)
+--- Example 1: Microgravity experiment (PK-4) ---
+Input context: "6.8μm melamine particles in argon RF plasma at 10 Pa, ISS microgravity"
+Output:
+{
+  "title": "Dust chain formation in PK-4 microgravity complex plasma",
+  "paper_type": "SIMULATION",
+  "physical_context": {
+    "experimental_setup": "PK-4 chamber on ISS, RF argon discharge, microgravity",
+    "plasma_regime": "strongly_coupled_Γ~100",
+    "dust_properties": "melamine formaldehyde 6.8μm, charge ~1e4 e"
+  },
+  "summary": "Study dust acoustic chain formation under microgravity. MD simulation with Yukawa potential reveals stable linear chains at κ≈1.2. Experimental validation via PK-4 video analysis confirms simulation predictions.",
+  "modeling_relevance": "high",
+  "key_innovations": ["microgravity_chain_stability", "Yukawa_MD_validation"],
+  "physics_concepts": ["Yukawa screening", "dust acoustic wave", "Coulomb coupling"],
+  "key_equations": [
+    {"name": "Yukawa potential", "form": "U(r) = (Q^2/(4πε0r)) exp(-r/λ_D)"},
+    {"name": "Coupling parameter", "form": "Γ = Q^2/(4πε0 a k_B T)"}
+  ],
+  "simulation_parameters_mentioned": ["kappa", "gamma", "particle_count"],
+  "applicable_scenarios": ["dust crystal formation", "wave propagation"],
+  "source": {"pdf": "Ivlev2012_PK4.pdf", "keyword": "dust chain"}
+}
+
+--- Example 2: Ground-based experiment (different context) ---
+Input context: "10μm silica particles in air plasma at 50 Pa, laboratory setup"
+Output:
+{
+  "title": "Dust cloud dynamics in ground-based rf complex plasma",
+  "paper_type": "SIMULATION",
+  "physical_context": {
+    "experimental_setup": "cylindrical glass chamber, rf argon-air mixture, 13.56 MHz",
+    "plasma_regime": "moderately_coupled_Γ~30",
+    "dust_properties": "silica 10μm, charge ~5e3 e"
+  },
+  "summary": "Investigate dust cloud expansion in ground-based rf discharge. Particle tracking shows anisotropic expansion due to ion drag forces. MD simulation reproduces cloud morphology with κ≈2.5.",
+  "modeling_relevance": "medium",
+  "key_innovations": ["ion_drag_modeling", "anisotropic_expansion"],
+  "physics_concepts": ["ion drag force", "Debye shielding", "particle charging"],
+  "key_equations": [
+    {"name": "Ion drag force", "form": "F_drag = n_i m_i v_i^2 σ"},
+    {"name": "Orbital Motion Limited charging", "form": "I_e = 4πa^2 n_e e √(k_B T_e/(2πm_e))"}
+  ],
+  "simulation_parameters_mentioned": ["kappa", "ion_drag_coefficient"],
+  "applicable_scenarios": ["dust transport", "cloud formation"],
+  "source": {"pdf": "Schmidt2018_ground.pdf", "keyword": "dust cloud"}
+}
+
+=== PAPER CONTENT TO ANALYZE (EXTRACT FROM HERE ONLY) ===
+{{ABSTRACT}}
+{{METHODS}}
+{{TABLES}}
+"""
+
+
+
+
+
+
+
+SIMULATION_PROMPT = """You are a plasma physics expert specializing in complex/dusty plasma simulations. Your task is to extract/estimate PHYSICAL PARAMETERS for simulation reproduction.
+
+⚠️ CRITICAL INSTRUCTION:
+- The schema below defines OUTPUT STRUCTURE ONLY. DO NOT copy numerical values, physical contexts, or reasoning chains from examples.
+- ALL values MUST derive from the paper content AFTER "=== PAPER CONTENT ===".
+- If paper describes ground experiment → DO NOT output "PK-4" or "microgravity".
+- If paper uses 10μm particles → DO NOT output 6.8μm.
+
+### OUTPUT SCHEMA (STRUCTURE ONLY - NO VALUES TO COPY)
+{
+  "instruction": "<physical_objective_and_environment>",
+  "input": {
+    "explicit_constraints": {
+      "<param_name>": {"value": <number>, "unit": "<unit>"}
+    },
+    "experimental_context": "<brief_description>"
+  },
+  "task_type": "forward_simulation",
+  "output": {
+    "parameters": {
+      "<param_name>": {
+        "estimated_range": [<low_float>, <high_float>],
+        "unit": "<unit_or_dimensionless>",
+        "physical_definition": "<mathematical_definition>",
+        "physical_meaning": "<interpretation_in_plasma_physics>",
+        "role_in_simulation": "<numerical_role>",
+        "inference_basis": ["<step_1_derived_from_paper>", "<step_2_physics_relation>", ...],
+        "confidence": <0.0-1.0>,
+        "source": "explicit | inferred_from_physics | assumed_typical"
+      }
+    },
+    "key_derivations": ["<physics_relation_1>", "<physics_relation_2>"],
+    "physical_reasoning": "<concise_explanation_linking_parameters_to_phenomenon>",
+    "uncertainty_sources": ["<source_1>", "<source_2>"]
+  },
+  "units": {"<param_name>": "<unit>"},
+  "source": {"pdf": "<filename>", "keyword": "<topic>"}
+}
+
+### PHYSICAL SAFETY CONSTRAINTS (USE ONLY FOR VALIDATION, NOT VALUE SOURCES)
+- κ (screening): typical range [0.1, 5.0] for complex plasmas → reject estimates outside this
+- Γ (coupling): [0.01, 1000] → Γ>100 = strong coupling regime
+- dt (timestep): must satisfy dt < 0.1 * plasma_period → reject unstable values
+→ These are BOUNDS for validation, NOT values to output.
+
+### EXAMPLES (FOR FORMAT REFERENCE ONLY - DO NOT COPY VALUES)
+--- Example 1: Microgravity chain formation (PK-4 context) ---
+Input context: "6.8μm particles, 10 Pa argon plasma, ISS microgravity"
+Output:
+{
+  "instruction": "Simulate dust chain formation in PK-4 microgravity RF plasma",
+  "input": {
+    "explicit_constraints": {
+      "particle_diameter": {"value": 6.8e-6, "unit": "m"},
+      "pressure": {"value": 10, "unit": "Pa"}
+    },
+    "experimental_context": "RF argon plasma, microgravity, PK-4 chamber on ISS"
+  },
+  "task_type": "forward_simulation",
+  "output": {
+    "parameters": {
+      "kappa": {
+        "estimated_range": [0.8, 1.5],
+        "unit": "dimensionless",
+        "physical_definition": "κ = a / λ_D, ratio of interparticle spacing to Debye length",
+        "physical_meaning": "Quantifies screening strength; κ~1 enables linear chain formation",
+        "role_in_simulation": "Determines interaction range in Yukawa potential",
+        "inference_basis": [
+          "Particle diameter 6.8μm → estimated interparticle spacing a ≈ 100μm (density ~1e8 m^-2 from Fig.3)",
+          "Pressure 10 Pa argon → Debye length λ_D ≈ 70-120μm (plasma tables for RF discharge)",
+          "Thus κ = a/λ_D ≈ 0.8-1.5"
+        ],
+        "confidence": 0.75,
+        "source": "inferred_from_physics"
+      },
+      "gamma": {
+        "estimated_range": [80, 200],
+        "unit": "dimensionless",
+        "physical_definition": "Γ = Q^2/(4πε0 a k_B T), Coulomb-to-thermal energy ratio",
+        "physical_meaning": "Γ>50 indicates strong coupling required for ordered structures",
+        "role_in_simulation": "Controls phase transition (gas → liquid → solid)",
+        "inference_basis": [
+          "Charge Q ≈ 1e4 e (OML model for 6.8μm particles in RF plasma)",
+          "a ≈ 100μm from density estimation",
+          "Ion temperature T_i ≈ 300K (typical for argon RF) → Γ ≈ 100-150"
+        ],
+        "confidence": 0.65,
+        "source": "inferred_with_uncertainty"
+      }
+    },
+    "key_derivations": [
+      "κ = a / λ_D using geometric spacing and Debye length",
+      "Q estimated via OML: Q ≈ πa^2 n_e √(k_B T_e/m_i)"
+    ],
+    "physical_reasoning": "Chain formation requires κ≈1 for anisotropic interaction and Γ>50 for strong coupling. Estimated ranges satisfy both conditions for PK-4 parameters.",
+    "uncertainty_sources": [
+      "Ion temperature not explicitly stated → ±30% uncertainty in Γ",
+      "Gas purity affects λ_D → κ range widened to 0.8-1.5"
+    ]
+  },
+  "units": {
+    "kappa": "dimensionless",
+    "gamma": "dimensionless"
+  },
+  "source": {"pdf": "Ivlev2012_PK4.pdf", "keyword": "dust chain"}
+}
+
+--- Example 2: Ground-based dust cloud (different context) ---
+Input context: "10μm silica particles, 50 Pa air plasma, laboratory chamber"
+Output:
+{
+  "instruction": "Simulate dust cloud expansion in ground-based rf complex plasma",
+  "input": {
+    "explicit_constraints": {
+      "particle_diameter": {"value": 1.0e-5, "unit": "m"},
+      "pressure": {"value": 50, "unit": "Pa"}
+    },
+    "experimental_context": "Cylindrical glass chamber, rf argon-air mixture, 13.56 MHz, Earth gravity"
+  },
+  "task_type": "forward_simulation",
+  "output": {
+    "parameters": {
+      "kappa": {
+        "estimated_range": [2.0, 3.5],
+        "unit": "dimensionless",
+        "physical_definition": "κ = a / λ_D",
+        "physical_meaning": "Higher κ indicates stronger screening due to higher pressure",
+        "role_in_simulation": "Shorter interaction range suppresses long-range ordering",
+        "inference_basis": [
+          "Particle diameter 10μm → estimated spacing a ≈ 150μm (lower density than PK-4)",
+          "Pressure 50 Pa → λ_D ≈ 40-75μm (higher pressure reduces Debye length)",
+          "Thus κ = a/λ_D ≈ 2.0-3.5"
+        ],
+        "confidence": 0.70,
+        "source": "inferred_from_physics"
+      },
+      "gamma": {
+        "estimated_range": [20, 60],
+        "unit": "dimensionless",
+        "physical_definition": "Γ = Q^2/(4πε0 a k_B T)",
+        "physical_meaning": "Moderate coupling enables fluid-like cloud dynamics",
+        "role_in_simulation": "Determines whether cloud remains gaseous or forms clusters",
+        "inference_basis": [
+          "Charge Q ≈ 5e3 e (smaller than PK-4 due to air admixture)",
+          "a ≈ 150μm, T_i ≈ 400K (higher due to air heating) → Γ ≈ 30-45"
+        ],
+        "confidence": 0.60,
+        "source": "inferred_with_uncertainty"
+      }
+    },
+    "key_derivations": [
+      "κ estimation based on pressure-dependent Debye length scaling λ_D ∝ P^{-0.5}",
+      "Charge reduction due to electron attachment on air molecules"
+    ],
+    "physical_reasoning": "Higher pressure (50 Pa vs 10 Pa) reduces Debye length, increasing κ. Lower charge and higher temperature reduce Γ compared to PK-4, resulting in fluid-like rather than crystalline behavior.",
+    "uncertainty_sources": [
+      "Air admixture fraction unknown → affects both λ_D and Q",
+      "Gravity effects not quantified → may influence density distribution"
+    ]
+  },
+  "units": {
+    "kappa": "dimensionless",
+    "gamma": "dimensionless"
+  },
+  "source": {"pdf": "Schmidt2018_ground.pdf", "keyword": "dust cloud"}
+}
+
+=== PAPER CONTENT TO ANALYZE (EXTRACT FROM HERE ONLY) ===
+{{ABSTRACT}}
+{{METHODS}}
+{{TABLES}}
+
+### OUTPUT REQUIREMENTS (REPEAT FOR EMPHASIS)
+- estimated_range: ALWAYS [low, high] with low < high (floats)
+- inference_basis: MUST reference SPECIFIC paper content (figures/tables/sentences)
+- NEVER output null, "unknown", or values copied from examples above
+- ALL fields in English
+"""
